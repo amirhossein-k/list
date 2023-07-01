@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form-print</title>
+    <link rel="stylesheet" href="./assets/css/print.css">
+	<script defer   src="./assets/js/script.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+	
+	
+	<div class="container-fluid">
+
+		<div class="my_modal">
+			<div class="row">
+				<div class="col-12 my_title">اضافه شد</div>
+				<div class="col-12 loading "><span></span></div>
+			</div>
+		</div>
+
+		<!-- header -->
+		<div class="row header">
+			<div class="col col-12">
+				<div class="row">
+					<div class="col col-1 title">امیرحسین</div>
+					<div class="body">
+
+						<div class="col col-12 ">
+							<div class="row">
+								<div class="col-3 col-md-1 ">ادرس</div>
+								<div class="col ">تهران </div>
+							</div>
+						</div>
+						<div class="col col-12">
+							<div class="row">
+								<div class="col-3 col-md-1">شماره تماس</div>
+								<div class="col ">09391470427</div>
+							</div>
+						</div>
+					</div>
+					<div class="footer">
+						<button class="my_button">پرینت</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- body -->
+		<div class="row content" id="content">
+			<div class="col-12" id="1">
+				<div class="row fixed">
+					<div class="col-12 col-md-3  p-2 p-lg-5 d-flex align-items-lg-center">
+						<div class="row w-100">
+							<div class="col-2 col-md-3">
+								<label for="title">عنوان:</label>
+							</div>
+							<div class="col col-md-9">
+								<input class="title w-100" type="text" id="title" name="title"
+								placeholder="عنوان" pattern=[A-Z\sa-z]{3,20} 
+								>
+							</div>
+						</div>
+						
+						
+					</div>
+					<div class="col-12 col-md-3  py-5 p-md-2 p-lg-5 d-flex align-items-lg-center">
+						<div class="row w-100">
+							<div class="col-2 col-md-3">
+								<label for="price">قیمت:</label>
+							</div>
+							<div class="col col-md-9">
+								<input class="price w-100" type="text" id="price" name="price"
+								placeholder="قیمت" pattern=[A-Z\sa-z]{3,20}
+								>
+							</div>
+							<div class="priceTo col-12"></div>
+						</div>
+						
+						
+					</div>
+					<div class="col-12 col-md-6  p-2 p-lg-5 d-flex align-items-lg-center ">
+						<div class="row w-100">
+							<div class="col-2 col-md-3">
+								<label for="describe">توضیحات:</label>
+							</div>
+							<div class="col col-md-9">
+								<input class="describe w-100" type="text" id="describe" name="describe"
+								placeholder="توضیحات" pattern=[A-Z\sa-z]{3,20}
+								
+								>
+							</div>
+
+						</div>
+					
+						
+					</div>
+					<hr>
+					<div class="col-12   p-2 p-lg-5 d-flex align-items-lg-center ">
+						<div class="row pic_content w-100">
+							<div class="col-4 col-md-4 col-lg-3 d-flex align-items-lg-center m-auto p-1">
+								
+								<label for="pic_upload" class="w-100 ">انتخاب عکس</label>
+								<input class="pic w-25" type="file" id="pic_upload" name="pic_upload"
+									oninput="pic.src=window.URL.createObjectURL(this.files[0])"
+									accept=".png,.jpg,.jpeg"
+								>
+								<button class="buttom uploade w-50" onclick="picList(this)">اپلود</button>
+							</div>
+							<div class="col-12 col-md-8 d-flex align-items-lg-center m-auto"><img id='pic' /></div>
+						</div>
+						
+					</div>
+					<div class="add disabled" onclick="create(this)" id="add">افزودن</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- list -->
+		<div class="row list gap_10">
+			<div class="col-12 d-none">
+				<div class="row list_first show" id="list_first">
+					<div class="col-5 p-3">
+						<div class="row w-100 h-100 gap_5">
+							<div class="col-2 d-flex justify-content-center align-items-center my_title">عنوان</div>
+							<div class="col d-flex justify-content-center align-items-center"><summary class="w-100 d-block">
+
+							</summary></div>
+						</div>
+					</div>
+					<div class="col-4 p-3">
+						<div class="row w-100 h-100 gap_10">
+							<div class="col-2 col-md-1  d-flex justify-content-center align-items-center my_title">قیمت</div>
+							<div class="col d-flex justify-content-start align-items-center">
+								<div class="row gap-1 w-100">
+									<div class="col-12 d-flex justify-content-start align-items-center ">
+
+									</div>
+									<div class="col-12">
+
+									</div>
+								</div>
+							</div>	
+						</div>
+							
+					</div>
+					<!-- icon -->
+					<div class="col d-flex justify-content-center align-items-center">
+						<div class="row icon_content w-100 h-100 gap_10">
+							<div class="col col-md-2 d-flex justify-content-center align-items-center"><i class="bi bi-caret-down-square add"></i></div>
+							<div class="col col-md-2 d-flex justify-content-center align-items-center"><i class="bi bi-arrow-clockwise" onclick="openUpdate(this)"></i></div>
+							<div class="col col-md-2 d-flex justify-content-center align-items-center trash"><i class="bi bi-trash" id="trash" onclick="deletee(this)"></i></div>
+						</div>
+					</div>
+				</div>
+				<!-- list detail -->
+				<div class="row content hidden detail_list" id="detail_list">
+					<div class="col-12">
+						<div class="row fixed">
+							<!-- title -->
+							<div class="col-12 col-md-3  p-2 p-lg-3 d-flex align-items-lg-center my_border">
+								<div class="row w-100">
+									<div class="col-2 col-md-3">
+										<label for="title" class="my_title">عنوان:</label>
+									</div>
+									<div class="col col-md-9">
+										<p id="title_detail"></p>
+									</div>
+								</div>
+								
+								
+							</div>
+							<!-- price -->
+							<div class="col-12 col-md-3  py-5 p-md-2 p-lg-3 d-flex align-items-lg-center my_border" >
+								<div class="row w-100">
+									<div class="col-2 col-md-3">
+										<label for="price" class="my_title">قیمت:</label>
+									</div>
+									<div class="col col-md-9">
+										
+										<div class="col-12 d-flex justify-content-start align-items-center " id="price_detail">
+
+										</div>
+										<div class="col-12">
+	
+										</div>
+									</div>
+									<div class="priceTo col-12"></div>
+								</div>
+								
+								
+							</div>
+							<!-- describe -->
+							<div class="col-12 col-md-6  p-2 p-lg-3 d-flex align-items-lg-center my_border">
+								<div class="row w-100">
+									<div class="col-2 col-md-3" >
+										<label for="describe" class="my_title">توضیحات:</label>
+									</div>
+									<div class="col col-md-9">
+										<p id="describe_detail"></p>
+									</div>
+		
+								</div>
+							
+								
+							</div>
+							<!-- photo -->
+							<div class="col-12 col-md-6 col-lg-5 col-xl-4  p-2 p-lg-3 d-flex align-items-lg-center ">
+								<div class="row w-100">
+									<!-- <div class="col-2 col-md-3">
+										<label for="photo">توضیحات:</label>
+									</div> -->
+									<div class="col-12 ">
+										<img src="" class="photo"/>
+									</div>
+		
+								</div>
+							
+								
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+
+		
+	</div>
+	<div class="update_modal ">
+
+	</div>
+
+	</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/mahmoud-eskandari/NumToPersian/dist/num2persian-min.js"></script>
+	<script type="module" src="./assets/js/uploade.js"></script>
+
+</body>
+</html>
