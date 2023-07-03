@@ -19,13 +19,11 @@ const togle = () => {
   for (element of elements) {
     element.addEventListener("click", function () {
       let btn = this;
-      // console.log(btn,'vtn')
-      // console.log(element,'oo')
+  
       const detail_list =
         btn.parentNode.parentNode.parentNode.parentNode.parentNode
           .childNodes[1];
-      // console.log(btn.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[1])
-      // console.log(btn.parentNode.parentNode.parentNode.parentNode,'9')
+     
 
       if (!detail_list.dataset.clicked) {
         detail_list.setAttribute("data-clicked", "true");
@@ -55,7 +53,7 @@ getBreeds()
   })
   .then((res) => {
     datas = res.data;
-    console.log(datas);
+   
     //
 
     for (dataaa of datas) {
@@ -64,14 +62,10 @@ getBreeds()
 
       var clone_listFirst = listFirst.cloneNode(true);
       var clone_listDetail = listDetail.cloneNode(true);
-      console.log(
-        clone_listFirst.children[0].children[0].children[1].children[0]
-      );
+     
 
       const toPersianNumber = price.value.num2persian();
-      // priceTo.innerText = toPersianNumber
-      // title_value,price_value,priceTo_value,describe_value,picc
-      // .setAttribute("data-clicked", "true");
+     
       clone_listFirst.children[0].children[0].children[1].children[0].innerHTML =
         dataaa.title_value;
       clone_listFirst.children[0].children[0].children[1].children[0].innerHTML =
@@ -90,7 +84,7 @@ getBreeds()
       );
 
    
-console.log(dataaa,'dataaa')
+
 
       clone_listDetail.children[0].children[0].children[0].children[0].children[1].children[0].innerHTML =
         dataaa.title_value;
@@ -112,12 +106,11 @@ console.log(dataaa,'dataaa')
       elements = document.querySelectorAll(".list_first .icon_content .add");
       trash = document.querySelectorAll(".list_first .icon_content .trash");
 
-      // console.log(body)
+    
     }
 
     togle();
-    // handletrash()
-    //
+   
   });
 
 // uploade file///////////////////////////////////
@@ -138,8 +131,7 @@ const picList = async (file) => {
     if (update_modal.style.display === "block") {
       var add = document.querySelector(".container-fluid .update_modal .fixed .add");
       
-      console.log("updatae");
-      console.log(this.ad.files[0], " e.target");
+
 
       formData.append("file", this.ad.files[0]);
       const key  =target_data[0].picc.fileKey
@@ -151,7 +143,7 @@ const picList = async (file) => {
        config
      );
 
-     console.log(data, "data up");
+
      picc = data;
     if(data)add.classList.remove('disabled')
      
@@ -159,8 +151,7 @@ const picList = async (file) => {
 
     } else {
       var add_new = document.querySelector('.content .fixed .add ')
-      console.log("first", file.parentNode.children[1].files[0]);
-
+     
       formData.append("file", file.parentNode.children[1].files[0]);
 
       const { data } = await axios.post(
@@ -169,7 +160,7 @@ const picList = async (file) => {
         config
       );
 
-      console.log(data, "data");
+  
       picc = data;
       if(data)add_new.classList.remove('disabled')
       
@@ -180,13 +171,7 @@ const picList = async (file) => {
 };
 
 // /////////////////////////////////////
-// ad.addEventListener('change',(e)=>{
-//     console.log(e.target.files)
-//     if(e.target.files.length > 0) {
 
-//     }
-
-// })
 
 // for change to price farsi/////////////////
 price.addEventListener("change", (e) => {
@@ -198,15 +183,11 @@ price.addEventListener("change", (e) => {
 });
 
 ///////////////////////////////////////////////
-// toggle shoow list detail/////////////////////
 
-//////////////////////////////////////////////
 
-// printBtn.addEventListener('click' , ()=> {
-//     printBtn.style.display = 'none'
-//     window.print();
-//     // console.log(price.num2persian())
-// })
+
+
+
 
 const showModal = (titleLodaing) => {
   const loading = document.querySelector(".my_modal .loading");
@@ -221,15 +202,15 @@ var suucess = "";
 
 // let array = []
 const create = async (e) => {
-  console.log(e,'er')
+ 
 
   var update_modal = document.querySelector(".container-fluid .update_modal");
-  console.log(target_data,'dataaaa')
+
   if (update_modal.style.display === "block") {
 
     var id = target_data[0]._id
     const  pic_id = picc._id
-    console.log(id,'id')
+
 
     
     var price_value = document.getElementById("price_update").value;
@@ -237,7 +218,7 @@ const create = async (e) => {
     var describe_value = document.getElementById("describe_update").value;
     var priceTo_value = document.querySelector(".update_modal .content .fixed .priceTo").innerHTML;
 
-    console.log(picc,'picccc')
+  
       const { data } = await axios.put("http://upload.iran.liara.run/api/list/update", {
       title_value,
       
@@ -254,16 +235,16 @@ const create = async (e) => {
       }, 2500);
     }
 
-    console.log(picc,'va')
+  
   }else{
 
-    // const priceTo =  document.querySelector(".priceTo" )
+ 
     var title_value = title.value;
     const price_value = price.value;
     const priceTo_value = priceTo.innerHTML;
     const describe_value = describe.value;
     const pic_id = picc._id
-    console.log(picc,'picc')
+    
     const { data } = await axios.post("http://upload.iran.liara.run/api/list/create", {
       title_value,
       title_value,
@@ -282,17 +263,13 @@ const create = async (e) => {
 
 };
 
-// var listFirst = document.getElementById('list_first')
 
-//   var clone_listFirst = listFirst.cloneNode(true)
-
-//   console.log(clone_listFirst.children[2].children[0].children[2].children[0],'7')
 
 const deletee = async (e) => {
   const id = e.getAttribute("data_id");
   const target = datas.filter((item) => item._id === id)
   const file = target[0].picc
-  console.log(file,'target_data')
+ 
   const config = {
     header: {
       "content-type": "multipart/form-data",
@@ -301,13 +278,13 @@ const deletee = async (e) => {
   const formData = new FormData();
   formData.append("file", file);
   const key  =target[0].picc.fileKey
-  console.log(target[0].picc.fileKey,'target[0].file.fileKey')
+
   const pic_id  =target[0].pic_id
-// console.log(pic_id,)
+
   const { data } = await axios.delete(
     `http://upload.iran.liara.run/api/list/delete/${id}/${key}/${pic_id}`,formData,config
   );
-  console.log(data, "data");
+
   if (data) {
     showModal(data.message);
     setTimeout(() => {
@@ -328,15 +305,14 @@ const openUpdate = async (e) => {
     div_close.innerHTML ='<i class="bi bi-x-lg"></i>'
     div_close.onclick= ()=>{update_modal.style.display ="none" ;update_modal.replaceChildren("");}
     update_modal.appendChild(div_close)
-    console.log(picc, "picss");
+ 
     var content = document.getElementById("content");
 
     update_modal.style.display = "block";
     var clone_content = content.cloneNode(true);
     const id =
       e.parentNode.parentNode.children[2].children[0].getAttribute("data_id");
-    // const key =
-    //   e.parentNode.parentNode.children[2].children[0].getAttribute("data_id");
+ 
 
      target_data = datas.filter((item) => item._id === id);
     const pic_moadal =
@@ -344,7 +320,7 @@ const openUpdate = async (e) => {
         .children[0].src;
     
 
-    console.log(clone_content.children[0].children[0].children[0].children[0].children[1].children[0], "ooo");
+   
 
     clone_content.children[0].children[0].children[0].children[0].children[1].children[0].value =
       target_data[0].title_value;
@@ -369,8 +345,7 @@ const openUpdate = async (e) => {
       "for",
       "pic_modal"
     );
-    // const div = document.createElement('div')
-    //   clone_content.children[0].children[0].children[4].children[0].children[0].replaceChildren(div)
+
     clone_content.children[0].children[0].children[4].children[0].children[0].children[1].id =
       "pic_modal";
     clone_content.children[0].children[0].children[4].children[0].children[0].children[1].classList.remove(
@@ -397,16 +372,6 @@ const openUpdate = async (e) => {
 
     my_modal.appendChild(clone_content);
 
-    console.log(
-      clone_content.children[0].children[0].children[4].children[0].children[0]
-        .children[1].files,
-      "ooo"
-    );
-    console.log(
-      clone_content.children[0].children[0].children[4].children[0].children[0]
-        .children[0],
-      "ooo"
-    );
 
     const price = document.getElementById("price_update");
     const priceTo = document.querySelector(".update_modal .content .fixed .priceTo ");
@@ -416,22 +381,18 @@ const openUpdate = async (e) => {
     
       const toPersianNumber = value_price.num2persian();
       priceTo.innerHTML = toPersianNumber;
-      console.log(priceTo, "price");
+   
     });
 
 
     ad = document.querySelector(".update_modal input[type='file'] ");
     var w = document.getElementById("pic_moadal");
     ad.addEventListener("change", (e) => {
-      console.log(e.target.files);
+     
       if (e.target.files.length > 0) {
-        console.log(w, "w");
+      
         w.src = window.URL.createObjectURL(e.target.files[0]);
       }
     });
   }
 };
-var listFirst = document.getElementById("list_first");
-
-var clone_listFirst = listFirst.cloneNode(true);
-console.log(clone_listFirst.children[2].children[0].children[2].children[0],'oooo[')
